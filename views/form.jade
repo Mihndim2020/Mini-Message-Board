@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='/new')
+    div.form-group
+      label(for='text_message') Text Message:
+      input#text_message.form-control(type='text' name='text_message' value=(undefined===text_message ? '' : text_message) )
+    div.form-group
+      label(for='author_name') Author's Name:
+      input#author_name.form-control(type='text' placeholder='Author\'s Name (Christian) last' name='author_name' required='true' value=(undefined===author_name ? '' : author_name) )
+    div.form-group
+      label(for='added_date') Added:
+      input#added_date.form-control(type='date' name='added_date' value=(undefined===added_date ? '' : added_date) )
+    button.btn.btn-primary(type='submit') Submit
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
